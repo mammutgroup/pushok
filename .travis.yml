@@ -14,7 +14,7 @@ cache:
     - $HOME/.composer/cache
 
 before_install:
-  - sudo apt-get -qq upgrade
+  - sudo apt-get -qq -y upgrade
 
 before_script:
   - travis_retry composer show --platform
