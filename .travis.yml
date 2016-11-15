@@ -13,6 +13,11 @@ cache:
   directories:
     - $HOME/.composer/cache
 
+before_install:
+  - sudo add-apt-repository ppa:ondrej/php
+  - sudo apt-get -qq update
+  - sudo apt-get install -y php7.0-curl
+
 before_script:
   - travis_retry composer show --platform
   - travis_retry composer self-update
