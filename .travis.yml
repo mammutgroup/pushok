@@ -6,17 +6,15 @@ php:
 
 # This triggers builds to run on the new TravisCI infrastructure.
 # See: http://docs.travis-ci.com/user/workers/container-based-infrastructure/
-sudo: false
+sudo: required
 
 ## Cache composer
 cache:
   directories:
     - $HOME/.composer/cache
 
-addons:
-    apt_packages:
-        - php-curl
-        - php-openssl
+install:
+  -  sudo apt-get install php-curl php-openssl
 
 before_script:
   - travis_retry composer self-update
