@@ -15,7 +15,7 @@ cache:
 
 before_install:
   - sudo add-apt-repository -y ppa:ondrej/php
-  - sudo apt-get -qq -y --force-yes update
+  - sudo apt-get -qq -y update
   - sudo apt-get -y install php7.0
 
 before_script:
