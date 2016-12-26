@@ -15,13 +15,21 @@ cache:
 
 before_install:
   - curl -V
-  - php -v
-  - php -i
-  - sudo add-apt-repository -y ppa:ondrej/php
-  - sudo apt-get -qq -y update
-  - sudo apt-get -y install php7.0 php7.0-curl
-  - php -v
-  - php -i
+  - wget http://curl.haxx.se/download/curl-7.46.0.tar.gz
+  - tar -xvf curl-7.46.0.tar.gz
+  - cd curl-7.46.0 # enter the directory where curl was unpacked
+  - ./buildconf
+  - ./configure
+  - make
+  - sudo make install
+  - mv /usr/bin/curl /usr/bin/curl.bak
+  - cp /usr/local/bin/curl /usr/bin/curl
+  - sudo service nginx restart
+  - sudo service php7.0-fpm restart
+#  - sudo add-apt-repository -y ppa:ondrej/php
+#  - sudo apt-get -qq -y update
+#  - sudo apt-get -y install php7.0 php7.0-curl
+  - curl -V
 
 
 before_script:
