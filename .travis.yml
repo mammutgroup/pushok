@@ -14,9 +14,15 @@ cache:
     - $HOME/.composer/cache
 
 before_install:
+  - curl -V
+  - php -v
+  - php -i
   - sudo add-apt-repository -y ppa:ondrej/php
   - sudo apt-get -qq -y update
   - sudo apt-get -y install php7.0 php7.0-curl
+  - php -v
+  - php -i
+
 
 before_script:
   - travis_retry composer show --platform
