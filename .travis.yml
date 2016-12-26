@@ -22,8 +22,8 @@ before_install:
   - ./configure
   - make
   - sudo make install
-  - mv /usr/bin/curl /usr/bin/curl.bak
-  - cp /usr/local/bin/curl /usr/bin/curl
+  - sudo mv /usr/bin/curl /usr/bin/curl.bak
+  - sudo cp /usr/local/bin/curl /usr/bin/curl
   - sudo service nginx restart
   - sudo service php7.0-fpm restart
 #  - sudo add-apt-repository -y ppa:ondrej/php
