@@ -44,7 +44,8 @@ before_install:
   - cd ../
 #  - sudo apt-get remove php-curl php7.0-curl
   - ls -la /home/travis/.phpenv/versions
-  - /usr/local/php/bin/php /home/travis/.phpenv/versions/7.0/bin/composer.phar show --platform
+#  - /usr/local/php/bin/php /home/travis/.phpenv/versions/7.0/bin/composer.phar show --platform
+  - composer -h
 
 
 before_script:
