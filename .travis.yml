@@ -2,7 +2,7 @@ language: php
 
 php:
   - 7.0
-  - 7.1
+#  - 7.1
 
 # This triggers builds to run on the new TravisCI infrastructure.
 # See: http://docs.travis-ci.com/user/workers/container-based-infrastructure/
@@ -28,12 +28,29 @@ before_install:
   - sudo cp /usr/local/bin/curl /usr/bin/curl
   - sudo service --status-all
 #  - sudo add-apt-repository -y ppa:ondrej/php
-  - php-config
+#  - php-config
 #  - sudo apt-get -y install php7.0 php7.0-curl
 #  - sudo sed -i '/usr/local/bin' /etc/ld.so.conf
   - sudo ldconfig
   - curl -V
   - cd ../
+  - wget -O php-7.0.7.tar.gz http://us.php.net/get/php-7.0.7.tar.gz/from/this/mirror
+  - tar -zxvf php-7.0.7.tar.gz
+  - cd php-7.0.7
+  - ./configure \
+      --prefix=/usr/local/php \
+      --with-apxs2=/usr/local/apache/bin/apxs \
+      --enable-mbstring \
+      --with-curl \
+      --with-openssl \
+      --with-xmlrpc \
+      --enable-zip \
+      --with-freetype-dir \
+      --with-xsl
+  - make
+  - sudo make install
+  - ls -la
+  - php -i | grep .ini
 #  - sudo apt-get remove php-curl php7.0-curl
   - composer show --platform
 
