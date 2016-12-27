@@ -6,6 +6,7 @@ php:
 
 # This triggers builds to run on the new TravisCI infrastructure.
 # See: http://docs.travis-ci.com/user/workers/container-based-infrastructure/
+dist: trusty
 sudo: required
 
 ## Cache composer
@@ -33,7 +34,7 @@ before_install:
   - sudo ldconfig
   - curl -V
   - cd ../
-  - sudo apt-get remove php-curl php7.0-curl
+#  - sudo apt-get remove php-curl php7.0-curl
   - composer show --platform
 
 
