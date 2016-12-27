@@ -30,7 +30,8 @@ before_install:
 #  - sudo add-apt-repository -y ppa:ondrej/php
 #  - php-config
 #  - sudo apt-get -y install php7.0 php7.0-curl
-  - echo '/usr/local/bin' | sudo tee --append /etc/ld.so.conf > /dev/null
+  - content=$(cat /etc/ld.so.conf)
+  - sudo sh -c "echo '/usr/local/bin\n$content' > /etc/ld.so.conf"
   - sudo ldconfig
   - curl -V
   - cd ../
