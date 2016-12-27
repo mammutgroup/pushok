@@ -37,7 +37,7 @@ before_install:
   - wget -O php-7.0.7.tar.gz http://us.php.net/get/php-7.0.7.tar.gz/from/this/mirror
   - tar -zxvf php-7.0.7.tar.gz
   - cd php-7.0.7
-  - ./configure --prefix=/usr/local/php --with-apxs2=/usr/local/apache/bin/apxs --enable-mbstring --with-curl --with-openssl --enable-zip --with-freetype-dir --with-xsl
+  - ./configure --prefix=/usr/local/php --enable-mbstring --with-curl --with-openssl --enable-zip --with-freetype-dir --with-xsl
   - make
   - sudo make install
   - ls -la
