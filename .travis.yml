@@ -14,6 +14,7 @@ cache:
     - $HOME/.composer/cache
 
 before_install:
+  - sudo apt-get -qq -y update
   - curl -V
   - wget http://curl.haxx.se/download/curl-7.46.0.tar.gz
   - tar -xvf curl-7.46.0.tar.gz
@@ -24,16 +25,15 @@ before_install:
   - sudo make install
   - sudo mv /usr/bin/curl /usr/bin/curl.bak
   - sudo cp /usr/local/bin/curl /usr/bin/curl
-#  - sudo service nginx restart
-#  - sudo service php7.0-fpm restart
   - sudo service --status-all
 #  - sudo add-apt-repository -y ppa:ondrej/php
-#  - sudo apt-get -qq -y update
+
 #  - sudo apt-get -y install php7.0 php7.0-curl
 #  - sudo sed -i '/usr/local/bin' /etc/ld.so.conf
   - sudo ldconfig
   - curl -V
   - cd ../
+  - sudo apt-get remove php-curl php7.0-curl
   - composer show --platform
 
 
