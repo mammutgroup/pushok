@@ -1,10 +1,12 @@
 {
     "name": "edamov/pushok",
     "type": "library",
-    "description": "PHP client for Apple Push Notification Service (APNs) - Send push notifications to iOS using the new APNs HTTP/2 protocol with token-based (JWT) or certificate-based authentication",
+    "description": "PHP client for Apple Push Notification Service (APNs) - Send push notifications to iOS using the new APNs HTTP/2 protocol with token-based (JWT with p8 private key) or certificate-based authentication",
     "keywords": [
         "apns",
-        "push notifications"
+        "push notifications",
+        "p8",
+        "php apns"
     ],
     "homepage": "https://github.com/edamov/pushok",
     "license": "MIT",
@@ -23,9 +25,12 @@
         "ext-openssl": "*",
         "lib-openssl": ">=1.0.2.5",
         "ext-gmp": "*",
+        "ext-xml": "*",
+        "ext-intl": "*",
         "spomky-labs/jose": "^6.1.1"
     },
     "require-dev": {
+        "ext-xdebug": "*",
         "phpunit/phpunit" : "~4.0||~5.0",
         "squizlabs/php_codesniffer": "^2.3",
         "satooshi/php-coveralls": "dev-master"

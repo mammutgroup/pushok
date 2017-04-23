@@ -59,6 +59,10 @@ class Client
     {
         $mh = curl_multi_init();
 
+        if (!defined('CURLPIPE_MULTIPLEX')) {
+            define('CURLPIPE_MULTIPLEX', 2);
+        }
+
         curl_multi_setopt($mh, CURLMOPT_PIPELINING, CURLPIPE_MULTIPLEX);
 
         $handles = [];
@@ -66,7 +70,7 @@ class Client
             $request = new Request($notification, $this->isProductionEnv);
             $handles[] = $ch = curl_init();
 
-            $this->authProvider->authenticateClient($ch);
+            $this->authProvider->authenticateClient($request);
 
             curl_setopt_array($ch, $request->getOptions());
             curl_setopt($ch, CURLOPT_HTTPHEADER, $request->getDecoratedHeaders());
@@ -94,6 +98,7 @@ class Client
 
             list($headers, $body) = explode("\r\n\r\n", $result, 2);
             $statusCode = curl_getinfo($handle, CURLINFO_HTTP_CODE);
+
             $responseCollection[] = new Response($statusCode, $headers, $body);
         }
 
@@ -119,7 +124,13 @@ class Client
      */
     public function addNotifications(array $notifications)
     {
-        $this->notifications = array_merge($this->notifications, $notifications);
+        foreach ($notifications as $notification) {
+            if (in_array($notification, $this->notifications, true)) {
+                continue;
+            }
+
+            $this->addNotification($notification);
+        }
     }
 
     /**

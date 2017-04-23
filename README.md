@@ -1,16 +1,16 @@
 # Pushok
 
-[![PHP 7 ready](http://php7ready.timesplinter.ch/edamov/pushok/master/badge.svg)](https://travis-ci.org/edamov/pushok)
-[![Latest Version on Packagist][ico-version]][link-packagist]
-[![Software License][ico-license]](LICENSE.md)
+[![PHP >= 7.0](https://img.shields.io/badge/php-%3E%3D%207.0-8892BF.svg?style=flat-square)](https://php.net/)
 [![Build Status][ico-travis]][link-travis]
+[![Latest Version on Packagist][ico-version]][link-packagist]
+[![Total Downloads][ico-downloads]][link-downloads]
 [![Coverage Status](https://coveralls.io/repos/github/edamov/pushok/badge.svg?branch=master)](https://coveralls.io/github/edamov/pushok?branch=master)
 [![Quality Score][ico-code-quality]][link-code-quality]
-[![Total Downloads][ico-downloads]][link-downloads]
+[![Software License][ico-license]](LICENSE.md)
 
 > **Note:** This library is under development
 
-Pushok is a simple PHP library for sending push headers to APNs. 
+Pushok is a simple PHP library for sending push notifications to APNs. 
 
 ## Features
 
@@ -27,6 +27,9 @@ Pushok is a simple PHP library for sending push headers to APNs.
 * lib-curl >= 7.46.0 (with http/2 support enabled)
 * lib-openssl >= 1.0.2e 
 
+Docker image that meets requirements can be found [here](https://hub.docker.com/r/edamov/pushok-docker).
+Or you can follow [this tutorial](https://nathanleclaire.com/blog/2016/08/11/curl-with-http2-support---a-minimal-alpine-based-docker-image/) to create your own docker image with curl with HTTP/2 support.
+
 ## Install
 
 Via Composer
@@ -41,7 +44,7 @@ $ composer require edamov/pushok
 <?php
 require __DIR__ . '/vendor/autoload.php';
 
-use Pushok\AuthProvider\Token;
+use Pushok\AuthProvider;
 use Pushok\Client;
 use Pushok\Notification;
 use Pushok\Payload;
@@ -51,7 +54,7 @@ $options = [
     'key_id' => 'AAAABBBBCC', // The Key ID obtained from Apple developer account
     'team_id' => 'DDDDEEEEFF', // The Team ID obtained from Apple developer account
     'app_bundle_id' => 'com.app.Test', // The bundle ID for app obtained from Apple developer account
-    'private_key_path' => __DIR__ . 'private_key.p8', // Path to private key
+    'private_key_path' => __DIR__ . '/private_key.p8', // Path to private key
     'private_key_secret' => null // Private key secret
 ];
 
@@ -66,7 +69,7 @@ $payload = Payload::create()->setAlert($alert);
 $payload = $payload->setSound('default');
 
 //add custom value to your notification, needs to be customized
-$payload = $payload->setCustomValue("key",$value);
+$payload = $payload->setCustomValue('key', 'value');
 
 $deviceTokens = ['<device_token_1>', '<device_token_2>', '<device_token_3>'];
 
